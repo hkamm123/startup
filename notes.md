@@ -9,6 +9,10 @@
 - [MDN](https://developer.mozilla.org)
 - [Markdown Syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
+## Git and Github repository
+
+I've learned that using markdown to take notes in this way can help me keep a central location for all my work. Super cool!
+
 ## AWS
 
 My IP address is: 54.81.96.130
