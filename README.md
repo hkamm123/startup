@@ -6,50 +6,39 @@ A good budget app is hard to find - especially without having to pay for it! Cen
 
 ## 🚀 Specification Deliverable
 
-> [!NOTE]
->  Fill in this sections as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
-
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Everyone knows budgeting is a good practice, especially if you want to save money for school or maintain a healthy relationship. The problem is that too many existing budget apps don't actually provide an efficient solution for keeping track of your spending. Some have unnecessary invasive features, while others hide design flaws behind complex interfaces. To make matters worse, some budget apps even cost money themselves! NoNonCents is a minimalistic and collaborative budget tracker for couples and roommates. It will be simple, efficient, and open source. Ditch the spreadsheets and start saving money with NoNonCents!
 
 ### Design
 
-![Design image](placeholder.png)
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
+![Design image](designsketch.png)
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Creating, reading, updating, and deleting of budget categories and expense items
+- Sharing budgets between multiple users
+- Real-time updating of recent transactions
+- A random weekly recipe from the Tasty API to inspire you to plan meals ahead and try new foods!
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Page structure will be implemented with HTML templates. There will be an overview page, a login page, and a join budget page, with links for navigation between them.
+- **CSS** - Used for dynamic styling that optimizes screen space on multiple device types
+- **React** - Used for dynamic page elements such as indicator graphs for funds remaining in each category
+- **Service** - Backend that serves requests for creating, joining, and deleting budgets, as well as CRUD operations on budget categories and expense items. Also handles user creation and authentication requests. Makes calls to the Tasty API to suggest a random recipe every week on the bottom of the overview page.
+- **DB/Login** - Used to persistently store important user and budget data, as well as the weekly random recipe.
+- **WebSocket** - Used for real-time updates that allow collaborative expense tracking. Through this, each user on a budget will see all budget updates in real-time on the "Recent Transactions" section of the overview page.
 
 ## 🚀 AWS deliverable
 
