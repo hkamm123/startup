@@ -16,10 +16,13 @@ I've learned that using markdown to take notes in this way can help me keep a ce
 ## AWS
 
 - My IP address is: 13.223.150.112
-- The command to ssh into my server: ssh -i [key pair file] ubuntu@13.223.150.112
+- The command to ssh into my server: `ssh -i [key pair file] ubuntu@13.223.150.112`
+- My domain name is: [echowebprogramming.click](http://echowebprogramming.click)
 - I learned:
   - how to create an AWS EC2 server instance
   - how to associate an elastic IP address to it
+  - how to purchase a domain name from Route 53
+  - how to use DNS records to connect my domain name to the IP address of my EC2 server
 
 ## Caddy
 
