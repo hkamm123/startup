@@ -15,8 +15,11 @@ I've learned that using markdown to take notes in this way can help me keep a ce
 
 ## AWS
 
-My IP address is: 54.81.96.130
-Launching my AMI I initially put it on a private subnet. Even though it had a public IP address and the security group was right, I wasn't able to connect to it.
+- My IP address is: 13.223.150.112
+- The command to ssh into my server: ssh -i [key pair file] ubuntu@13.223.150.112
+- I learned:
+  - how to create an AWS EC2 server instance
+  - how to associate an elastic IP address to it
 
 ## Caddy
 
