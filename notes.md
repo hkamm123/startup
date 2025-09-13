@@ -27,6 +27,8 @@ I've learned that using markdown to take notes in this way can help me keep a ce
 ## Caddy
 
 No problems worked just like it said in the [instruction](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md).
+I learned:
+- how to edit the caddy file to allow https traffic and request certificates
 
 ## HTML
 
