@@ -34,6 +34,8 @@ I learned:
 
 First HTML assignment went great. [CodePen](https://codepen.io/hkamm123/pen/VYvoxqB) is so easy to use, I can't believe I'd never heard of it before!
 
+[HTML Input](https://codepen.io/hkamm123/pen/JoGPdvm) assignment was also a breeze.
+
 ## CSS
 
 This took a couple hours to get it how I wanted. It was important to make it responsive and Bootstrap helped with that. It looks great on all kinds of screen sizes.
