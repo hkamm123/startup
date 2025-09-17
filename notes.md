@@ -36,6 +36,8 @@ First HTML assignment went great. [CodePen](https://codepen.io/hkamm123/pen/VYvo
 
 [HTML Input](https://codepen.io/hkamm123/pen/JoGPdvm) assignment was also a breeze.
 
+[HTML Media](https://codepen.io/hkamm123/pen/JoGPZwm) assignment: I learned how to embed videos, which is pretty cool!
+
 ## CSS
 
 This took a couple hours to get it how I wanted. It was important to make it responsive and Bootstrap helped with that. It looks great on all kinds of screen sizes.
