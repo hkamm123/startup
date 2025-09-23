@@ -51,10 +51,10 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **HTML pages** - I created pages for logging in, viewing the budget, adding expenses, and adding/editing budget categories
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
+- [x] **Proper HTML element usage** - I used body, nav, main, header, and footer elements as well as others like section and progress
+- [x] **Links** - I created links between all pages for easy navigation
+- [x] **Text** - I included necessary text, including page titles in headers and my name in the footers
+- [x] **3rd party API placeholder** - I created a placeholder for the recipe of the day section, which will call the Tasty API
 - [ ] **Images** - I did not complete this part of the deliverable.
 - [ ] **Login placeholder** - I did not complete this part of the deliverable.
 - [ ] **DB data placeholder** - I did not complete this part of the deliverable.
