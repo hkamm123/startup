@@ -17,6 +17,14 @@
 
         <main>
             <h1>My Budget</h1>
+
+            <section class="recent-transactions">
+                <h2>Recent Transactions</h2>
+                <ul>
+                    <li>Hyrum added hot dogs for $37 in Groceries</li>
+                    <li>Hyrum added gas for $20 in Groceries</li>
+                </ul>
+            </section>
             
             <section class="budget-category">
                 <h2>Groceries</h2>
@@ -31,7 +39,21 @@
                 <p>Spent: $20/$75</p>
                 <hr>
             </section>
-            <!-- list of recent transactions -->
+
+            <h2>Add a Category</h2>
+            <form method="get" action="budget.html">
+                <div>
+                <span>📝</span>
+                <input type="text" placeholder="category name" />
+                </div>
+
+                <div>
+                <span>💵</span>
+                <input type="number" placeholder="spending limit" />
+                </div>
+
+                <button type="submit">Add Category</button>
+            </form>
         </main>
 
         <footer>
