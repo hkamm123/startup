@@ -8,15 +8,33 @@
     <body>
         <header>
             <h1>NoNonCents</h1>
-            <!-- insert nav here, consider using menu instead of ul elements -->
+            <menu>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="budget.html">My Budget</a></li>
+                <li><a href="expense.html">Add Expense</a></li>
+            </menu>
         </header>
 
         <main>
             <h1>Welcome to NoNonCents!</h1>
-            <!-- insert login info -->
+            <form method="get" action="budget.html">
+                <div>
+                <span>@</span>
+                <input type="text" placeholder="your@email.com" />
+                </div>
+
+                <div>
+                <span>🔒</span>
+                <input type="password" placeholder="password" />
+                </div>
+
+                <button type="submit">Login</button>
+                <button type="submit">Create</button>
+            </form>
         </main>
 
         <footer>
+            <a href="https://tasty.co/recipe/one-pot-garlic-parmesan-chicken-pasta">recipe of the day</a>
             <p>Created by Hyrum Kammerman</p>
             <br />
             <a href="https://github.com/hkamm123/startup">GitHub</a>
