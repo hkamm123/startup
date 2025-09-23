@@ -55,10 +55,10 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Links** - I created links between all pages for easy navigation
 - [x] **Text** - I included necessary text, including page titles in headers and my name in the footers
 - [x] **3rd party API placeholder** - I created a placeholder for the recipe of the day section, which will call the Tasty API
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **Images** - I added a placeholder for an image of the recipe of the day
+- [x] **Login placeholder** - I added a simple html form as a placeholder for login functionality, following the Simon HTML example
+- [x] **DB data placeholder** - this is represented in edit/delete/create buttons for expenses and categories which will be stored in the DB
+- [x] **WebSocket placeholder** - this is represented in the list of recent transactions, which will update in real-time over WS
 
 ## 🚀 CSS deliverable
 
