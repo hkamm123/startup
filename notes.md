@@ -38,6 +38,8 @@ First HTML assignment went great. [CodePen](https://codepen.io/hkamm123/pen/VYvo
 
 [HTML Media](https://codepen.io/hkamm123/pen/JoGPZwm) assignment: I learned how to embed videos, which is pretty cool!
 
+After the initial assignments, I created a simple html skeleton of my project with placeholders for all the technologies I will implement. Something cool that I learned is you can use a `<progress>` element to show progress in something, such as how much money has been spent in a budget category!
+
 ## CSS
 
 [CSS Practice](https://codepen.io/hkamm123/pen/OPMLwpW) assignment was a good introduction to what can be dome with CSS. I loved learning about doing animations! I may implement that in my startup app.
