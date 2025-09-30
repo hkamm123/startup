@@ -46,3 +46,39 @@ footer a:hover {
     color: coral;
     text-decoration: none;
 }
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: antiquewhite;
+}
+
+main h1 {
+    justify-self: center;
+}
+
+main a {
+    color: darkslategrey;
+    text-decoration: underline;
+}
+
+main a:hover {
+    color: coral;
+    text-decoration: none;
+}
+
+main aside {
+    justify-self:center;
+    align-items:flex
+}
+
+main form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
