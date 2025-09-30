@@ -50,6 +50,8 @@ The [practice with Bootstrap](https://codepen.io/hkamm123/pen/LEGGYBm?editors=10
 
 In the Simon CSS part of this assignment, I learned that you can actually overwrite bootstrap, which is very interesting!
 
+Headers and nav items are so hard to style. What I eventually ended up doing was using a combination of bootstrap and normal css. I imported bootstrap through the link tag and then used some flex attributes and text styling to get around the trickier default styles of the li elements.
+
 ## React Part 1: Routing
 
 Setting up Vite and React was pretty simple. I had a bit of trouble because of conflicting CSS. This isn't as straight forward as you would find with Svelte or Vue, but I made it work in the end. If there was a ton of CSS it would be a real problem. It sure was nice to have the code structured in a more usable way.

@@ -1,1 +1,28 @@
 /* main stylesheet for necessary non-bootstrap styles */
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color:darkslategrey;
+    color:antiquewhite;
+    text-decoration: none;
+}
+
+header nav menu {
+  display: flex;
+  gap: 15px; /* spacing between items */
+  list-style: none; /* remove bullets */
+  margin: 0;
+  padding: 0;
+}
+
+header nav a {
+    color: antiquewhite;
+}
+
+header nav a:hover {
+    color:coral;
+    text-decoration: none;
+}
