@@ -81,4 +81,18 @@ main form {
     padding: 10px;
     justify-content: flex-start;
     align-items: center;
+    gap: 10px;
+}
+
+button {
+    width: 75px;
+    background-color: coral;
+    color: darkslategrey;
+    text-decoration: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+
+button:hover {
+    background-color: antiquewhite;
 }
