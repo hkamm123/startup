@@ -64,7 +64,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - Made header items line up, added a pleasant color and font to them.
+- [ ] **Header, footer, and main content body** - Made header items line up, added a pleasant color and font to them. Did the same for footer. Moved recipe of the day into body instead of footer.
 - [ ] **Navigation elements** - I did not complete this part of the deliverable.
 - [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
 - [ ] **Application elements** - I did not complete this part of the deliverable.

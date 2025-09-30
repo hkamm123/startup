@@ -26,3 +26,23 @@ header nav a:hover {
     color:coral;
     text-decoration: none;
 }
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    background-color: darkslategrey;
+    color: antiquewhite;
+}
+
+footer a {
+    color: antiquewhite;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: coral;
+    text-decoration: none;
+}
