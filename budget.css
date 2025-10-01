@@ -3,7 +3,21 @@ main * {
     flex-direction: column;
 }
 
-.budget-categories {
+.budget-category section {
+    border: 3px solid darkslategrey;
+    border-radius: 10%;
+    padding: 10px;
+    max-width: 170px;
+}
+
+li, h3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.budget-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,14 +25,16 @@ main * {
     gap: 10px;
 }
 
-@media (min-width: 500px) {
-    .budget-categories {
-        flex-direction: row;
-    }
+.recent-transactions {
+    align-self: flex-start;
 }
 
-.budget-category {
-    border: 3px solid darkslategrey;
-    border-radius: 10%;
-    padding: 10px;
+main li a {
+    text-decoration: none;
+}
+
+@media (min-width: 500px) {
+    .budget-content {
+        flex-direction: row;
+    }
 }
