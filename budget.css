@@ -26,7 +26,17 @@ li, h3 {
 }
 
 .recent-transactions {
-    align-self: flex-start;
+    align-self: center;
+    justify-content: center;
+}
+
+.recent-transactions ul {
+    padding-left: 0;
+}
+
+.recent-transactions li {
+    display: flex;
+    justify-content: flex-start;
 }
 
 main li a {
