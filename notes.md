@@ -54,6 +54,8 @@ Headers and nav items are so hard to style. What I eventually ended up doing was
 
 I realized the recipe of the day should be in the body instead of the footer to make the footer nice and small.
 
+When working with the budget categories, I learned about using `@media` to change the css based on the width of the screen. This made it possible to display the categories horizontally on a wider screen, and vertically on a narrower screen. I'm not sure how this will scale in the future with multiple categories though. I may need to change it later.
+
 ## React Part 1: Routing
 
 Setting up Vite and React was pretty simple. I had a bit of trouble because of conflicting CSS. This isn't as straight forward as you would find with Svelte or Vue, but I made it work in the end. If there was a ton of CSS it would be a real problem. It sure was nice to have the code structured in a more usable way.

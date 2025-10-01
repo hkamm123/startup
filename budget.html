@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <title>💵NoNonCents💵</title>
         <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="budget.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -24,28 +25,30 @@
             <h1>My Budget</h1>
 
             <section class="recent-transactions">
-                <h2>Recent Transactions</h2>
+                <h3>Recent Transactions</h3>
                 <ul>
                     <li><a href="budget.html">🗑️</a>Hyrum added hot dogs for $37 in Groceries</li>
                     <li><a href="budget.html">🗑️</a>Hyrum added gas for $20 in Groceries</li>
                 </ul>
             </section>
             
-            <section class="budget-category">
-                <h2>Groceries</h2>
-                <progress value="37" max="100"></progress>
-                <p>Spent: $37/$100</p>
-                <a href="category.html">edit</a>
-                <hr>
-            </section>
-
-            <section class="budget-category">
-                <h2>Gas</h2>
-                <progress value="20" max="75"></progress>
-                <p>Spent: $20/$75</p>
-                <a href="category.html">edit</a>
-                <hr>
-            </section>
+            <div class="budget-categories">
+                <section class="budget-category">
+                    <h2>Groceries</h2>
+                    <progress value="37" max="100"></progress>
+                    <p>Spent: $37/$100</p>
+                    <a href="category.html">edit</a>
+                    <hr>
+                </section>
+    
+                <section class="budget-category">
+                    <h2>Gas</h2>
+                    <progress value="20" max="75"></progress>
+                    <p>Spent: $20/$75</p>
+                    <a href="category.html">edit</a>
+                    <hr>
+                </section>
+            </div>
 
             <a href="category.html">Add a Category</a>
             <a href="https://tasty.co/recipe/one-pot-garlic-parmesan-chicken-pasta">recipe of the day</a>
