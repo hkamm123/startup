@@ -54,6 +54,7 @@ main {
     align-items: center;
     padding: 10px;
     background-color: antiquewhite;
+    text-align: center;
 }
 
 main h1 {
@@ -71,8 +72,10 @@ main a:hover {
 }
 
 main aside {
-    justify-self:center;
-    align-items:flex
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
 main form {
