@@ -64,12 +64,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - Made header items line up, added a pleasant color and font to them. Did the same for footer. Moved recipe of the day into body instead of footer. Cleaned up the login/create form on the landing page with centered elements and nice-looking buttons. Made the display of the budget categories dynamic with the width of the screen.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - Made header items line up, added a pleasant color and font to them. Did the same for footer. Moved recipe of the day into body instead of footer. Cleaned up the login/create form on the landing page with centered elements and nice-looking buttons. Made the display of the budget categories dynamic with the width of the screen.
+- [x] **Navigation elements** - Completed as part of header
+- [x] **Responsive to window resizing** - Budget category and recent transaction elements go from row to column based on width of page, main headers and text stay centered regardless of window size
+- [x] **Application elements** - Completed as described above
+- [x] **Application text content** - Text is in a pleasant, readable font and color. Links and buttons clearly change color when hovered over.
+- [x] **Application images** - Image is a good size and stays centered regardless of window size.
 
 ## 🚀 React part 1: Routing deliverable
 
