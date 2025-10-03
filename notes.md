@@ -60,7 +60,7 @@ When working with the budget categories, I learned about using `@media` to chang
 
 I had fun setting up Vite and React. I only learned the basics of how to get the template app working, but I'm excited to learn more as I try to build a powerful budget app with these tools.
 
-I used [this codepen](https://codepen.io/hkamm123/pen/myVOqwE) to learn about how to use state and events to change component style.
+I used [this codepen](https://codepen.io/hkamm123/pen/myVOqwE) to learn about how to use state and events to change component style. [This codepen](https://codepen.io/hkamm123/pen/OPMbzMZ) also helped me learn about routing and having nested components.
 
 ## React Part 2: Reactivity
 
