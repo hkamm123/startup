@@ -1,4 +1,9 @@
 /* main stylesheet for necessary non-bootstrap styles */
+html {
+    background-color: antiquewhite;
+    height: 100%
+}
+
 header {
     display: flex;
     flex-direction: row;
@@ -35,6 +40,9 @@ footer {
     padding: 10px;
     background-color: darkslategrey;
     color: antiquewhite;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 footer a {
