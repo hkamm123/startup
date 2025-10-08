@@ -62,7 +62,7 @@ I had fun setting up Vite and React. I only learned the basics of how to get the
 
 I used [this codepen](https://codepen.io/hkamm123/pen/myVOqwE) to learn about how to use state and events to change component style. [This codepen](https://codepen.io/hkamm123/pen/OPMbzMZ) also helped me learn about routing and having nested components.
 
-After converting the simon app over to React, I feel like I have a little better grasp on the power of Vite, React, and routing. I am excited to convert my own project over!
+After converting the simon app over to React, I feel like I have a little better grasp on the power of Vite, React, and routing. Following that pattern, I was able to convert my own project over. I had some issues with stylying, which I was eventually able to resolve by getting rid of/changing some parent elements that were added due to the nature of react routing.
 
 ## React Part 2: Reactivity
 
