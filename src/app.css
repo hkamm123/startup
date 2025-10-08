@@ -27,7 +27,7 @@ header nav a {
     color: antiquewhite;
 }
 
-header nav a:hover {
+header li:hover {
     color:coral;
     text-decoration: none;
 }
