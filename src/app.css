@@ -1,5 +1,5 @@
 /* main stylesheet for necessary non-bootstrap styles */
-html {
+.app {
     background-color: antiquewhite;
     height: 100%
 }
