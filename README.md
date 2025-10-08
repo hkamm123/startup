@@ -76,8 +76,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **Bundled using Vite** - I restructured the project files, installed all necessary dependencies, and created the necessary index.html, index.jsx, and app.jsx (just boilerplate to start with) to get the app running.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Components** - I added some boilerplate components for the router to route to.
+- [x] **Router** - I added a router in the app component, with routes for login, budget, cateogory, and expense. I copied the html from the old static pages into the new components. I learned a lot more about CSS when fixing some styles that got changed in the process.
 
 ## 🚀 React part 2: Reactivity deliverable
 
