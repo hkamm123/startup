@@ -11,7 +11,6 @@ import { Expense } from './expense/expense';
 export default function App() {
   return (
   <BrowserRouter>
-    <div className="body bg-dark text-light">
       <header>
           <h1>NoNonCents</h1>
           <nav>
@@ -35,7 +34,6 @@ export default function App() {
           <p>Created by Hyrum Kammerman</p>
           <a href="https://github.com/hkamm123/startup">GitHub</a>
       </footer>
-    </div>
   </BrowserRouter>);
 }
 

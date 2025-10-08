@@ -14,7 +14,7 @@ export function Login() {
         </form>
         <aside>
             <img src="512546.webp" width="100"></img>
-            <a href="https://tasty.co/recipe/one-pot-garlic-parmesan-chicken-pasta">recipe of the day</a>
+            <a target="_blank" href="https://tasty.co/recipe/one-pot-garlic-parmesan-chicken-pasta">recipe of the day</a>
         </aside>
     </main>
   );

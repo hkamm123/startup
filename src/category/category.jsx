@@ -4,7 +4,7 @@ export function Category() {
   return (
     <main>
         <h1>Add/Edit a Category</h1>
-        <form method="get" action="budget.html">
+        <form method="get" action="/budget">
             <div>
             <span>📝</span>
             <input type="text" placeholder="category name" />
@@ -17,7 +17,7 @@ export function Category() {
 
             <button type="submit">Add Category</button>
         </form>
-        <a href="https://tasty.co/recipe/one-pot-garlic-parmesan-chicken-pasta">recipe of the day</a>
+        <a target="_blank" href="https://tasty.co/recipe/one-pot-garlic-parmesan-chicken-pasta">recipe of the day</a>
     </main>
   );
 }
