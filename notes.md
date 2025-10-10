@@ -66,7 +66,7 @@ After converting the simon app over to React, I feel like I have a little better
 
 The practice with JavaScript arrays and first class functions was fun. I learned about a very helpful built-in array method called `every`, which returns true if every item in the array makes a given predicate function return true.
 
-I learned a little about how react useState works with [this codepen](https://codepen.io/hkamm123/pen/ogbwLrm).
+I learned a little about how react useState works with [this codepen](https://codepen.io/hkamm123/pen/ogbwLrm). Also used [this one](https://codepen.io/hkamm123/pen/dPGRpXB) to learn about the JS DOM.
 
 ## React Part 2: Reactivity
 
