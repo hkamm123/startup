@@ -1,6 +1,8 @@
 import React from 'react';
 import './budget.css';
 import { AuthState } from '../login/authState';
+import { Button } from 'react-bootstrap';
+import { BudgetObj } from './budgetObj.js';
 
 
 export function Budget(props) {
@@ -21,8 +23,7 @@ export function Budget(props) {
             <section>
               <h3>Recent Transactions</h3>
               <ul>
-                  <li><a href="/budget">🗑️</a>Hyrum added hot dogs for $37 in Groceries</li>
-                  <li><a href="/budget">🗑️</a>Hyrum added gas for $20 in Groceries</li>
+                {listExpenses()}
               </ul>
             </section>
           </div>
@@ -52,5 +53,18 @@ export function Budget(props) {
         <a target="_blank" href="https://tasty.co/recipe/one-pot-garlic-parmesan-chicken-pasta">recipe of the day</a>
       </main>
     );
+  }
+
+  function listExpenses() {
+    var elements = [];
+    for (let category of props.budget.categories) {
+      for (let expense of category.expenses) {
+        elements.push(<li>
+          <Button onClick={category.removeExpense(expense)}>🗑️</Button>
+          {expense.creator} added {expense.item} for ${expense.amount} in {category.name}
+          </li>)
+      }
+    }
+    return elements;
   }
 }
