@@ -39,7 +39,6 @@ export default function App() {
               userName={userName}
               authState={authState}
               onAuthChange={(authState, username) => {
-                console.log("onAuthChange called with " + authState + " and " + username);
                 setAuthState(authState);
                 localStorage.setItem('authState', authState);
                 setUserName(userName);

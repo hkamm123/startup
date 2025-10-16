@@ -22,6 +22,4 @@ export function Authenticated(props) {
       </Button>
     </div>
   );
-
-  console.log("username " + props.username);
 }

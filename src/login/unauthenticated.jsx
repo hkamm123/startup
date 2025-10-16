@@ -7,7 +7,6 @@ export function Unauthenticated(props) {
   const [password, setPassword] = React.useState('');
 
   async function loginUser() {
-    console.log("loggin in user. current username: " + userName);
     localStorage.setItem('userName', userName);
     props.onLogin(userName);
   }
