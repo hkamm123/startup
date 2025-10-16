@@ -68,6 +68,8 @@ The practice with JavaScript arrays and first class functions was fun. I learned
 
 I learned a little about how react useState works with [this codepen](https://codepen.io/hkamm123/pen/ogbwLrm). Also used [this one](https://codepen.io/hkamm123/pen/dPGRpXB) to learn about the JS DOM.
 
+I learned what it means to "push state up" in React, which gives me the ability to pass variables and objects between components.
+
 ## React Part 2: Reactivity
 
 This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.
