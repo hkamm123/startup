@@ -1,17 +1,15 @@
 import React from 'react';
 
-export function Login() {
+import { Unauthenticated } from './unauthenticated';
+import { Authenticated } from './authenticated';
+import { AuthState } from './authState';
+
+export function Login({ userName, authState, onAuthChange }) {
   return (
     <main>
-        <h1>Welcome to NoNonCents!</h1>
-        <form method="get" action="/budget">
-            <span>Please Log In or Create an Account</span>
-            <input type="text" placeholder="your@email.com" />
-            <input type="password" placeholder="password" />
-
-            <button type="submit">Login</button>
-            <button type="submit">Create</button>
-        </form>
+        { authState !== AuthState.Unknown && <h1>Welcome to NoNonCents!</h1> }
+        { authState === AuthState.Authenticated && <Authenticated userName={userName} onLogout={() => onAuthChange(AuthState.Unauthenticated)} /> }
+        { authState === AuthState.Unauthenticated && <Unauthenticated userName={userName} onLogin={(username) => onAuthChange(AuthState.Authenticated, username)} /> }
         <aside>
             <img src="512546.webp" width="100"></img>
             <a target="_blank" href="https://tasty.co/recipe/one-pot-garlic-parmesan-chicken-pasta">recipe of the day</a>

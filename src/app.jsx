@@ -7,8 +7,13 @@ import { Login } from './login/login';
 import { Budget } from './budget/budget';
 import { Category } from './category/category';
 import { Expense } from './expense/expense';
+import { AuthState } from './login/authState';
 
 export default function App() {
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+
   return (
   <BrowserRouter>
       <header>
@@ -16,14 +21,36 @@ export default function App() {
           <nav>
               <menu>
               <li><NavLink className="nav-link" to="/">Home</NavLink></li>
+              { authState === AuthState.Authenticated &&
               <li><NavLink className="nav-link" to="budget">My Budget</NavLink></li>
+              }
+              { authState === AuthState.Authenticated &&
               <li><NavLink className="nav-link" to="expense">Add Expense</NavLink></li>
+              }
               </menu>
           </nav>
       </header>
 
       <Routes>
-        <Route path='/' element={<Login />} exact />
+        <Route
+          path='/'
+          element={
+            <Login
+              userName={userName}
+              authState={authState}
+              onAuthChange={(authState, username) => {
+                console.log("onAuthChange called with " + authState + " and " + username);
+                setAuthState(authState);
+                localStorage.setItem('authState', authState);
+                setUserName(userName);
+                if (username) {
+                  localStorage.setItem('userName', username);
+                }
+              }}
+            />
+          }
+          exact
+        />
         <Route path='/budget' element={<Budget />} />
         <Route path='/category' element={<Category />} />
         <Route path='/expense' element={<Expense />} />
