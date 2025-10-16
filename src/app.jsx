@@ -42,9 +42,6 @@ export default function App() {
                 setAuthState(authState);
                 localStorage.setItem('authState', authState);
                 setUserName(userName);
-                if (username) {
-                  localStorage.setItem('userName', username);
-                }
               }}
             />
           }

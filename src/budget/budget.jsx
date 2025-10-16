@@ -6,8 +6,8 @@ export function Budget() {
     <main>
       <h1>My Budget</h1>
 
-      <div class="budget-content">
-        <div class="recent-transactions">
+      <div className="budget-content">
+        <div className="recent-transactions">
           <section>
             <h3>Recent Transactions</h3>
             <ul>
@@ -17,7 +17,7 @@ export function Budget() {
           </section>
         </div>
           
-        <div class="budget-category">
+        <div className="budget-category">
           <section>
             <h2>Groceries</h2>
             <progress value="37" max="100"></progress>
@@ -27,7 +27,7 @@ export function Budget() {
           </section>
         </div>
 
-        <div class="budget-category">
+        <div className="budget-category">
           <section>
             <h2>Gas</h2>
             <progress value="20" max="75"></progress>

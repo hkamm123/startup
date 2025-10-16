@@ -6,4 +6,8 @@ export class AuthState {
   constructor(name) {
     this.name = name;
   }
+
+  toString() {
+    return `AuthState.${this.name}`;
+  }
 }

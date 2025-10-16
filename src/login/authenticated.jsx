@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 export function Authenticated(props) {
   const navigate = useNavigate();
-  const {username, onLogout} = props;
+  const [userName, setUsername] = React.useState(props.userName);
 
   function logout() {
     localStorage.removeItem('userName');
@@ -14,6 +14,7 @@ export function Authenticated(props) {
 
   return (
     <div>
+      <h2>{userName}</h2>
       <Button onClick={() => navigate('/budget')}>
         View Budget
       </Button>
