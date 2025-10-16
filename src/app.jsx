@@ -40,16 +40,15 @@ export default function App() {
               authState={authState}
               onAuthChange={(authState, username) => {
                 setAuthState(authState);
-                localStorage.setItem('authState', authState);
-                setUserName(userName);
+                setUserName(username);
               }}
             />
           }
           exact
         />
-        <Route path='/budget' element={<Budget />} />
-        <Route path='/category' element={<Category />} />
-        <Route path='/expense' element={<Expense />} />
+        <Route path='/budget' element={<Budget userName={userName} authState={authState}/>} />
+        <Route path='/category' element={<Category userName={userName} authState={authState} />} />
+        <Route path='/expense' element={<Expense userName={userName} authState={authState} />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
 
