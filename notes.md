@@ -72,7 +72,7 @@ I learned a little about how react useState works with [this codepen](https://co
 
 I learned what it means to "push state up" in React, which gives me the ability to pass variables and objects between components.
 
-### JavaScript Promises and Async/Await
+## JavaScript Promises and Async/Await
 A simple example of using promises:
 ``` js
 const coinToss = new Promise((resolve, reject) => {
@@ -114,6 +114,39 @@ console.log('done');
 // OUTPUT: {email: 'bud@mail.com', authenticated: true}
 // OUTPUT: done
 ```
+
+## JavaScript - Fetch
+The `fetch` function is a way to make requests to external endpoints via https.
+```js
+fetch('https://jsonplaceholder.typicode.com/posts', {
+  method: 'POST',
+  body: JSON.stringify({
+    title: 'test title',
+    body: 'test body',
+    userId: 1,
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then((response) => response.json())
+  .then((jsonResponse) => {
+    console.log(jsonResponse);
+  });
+```
+
+### URL anatomy
+`<scheme>://<domain name>:<port>/<path>?<parameters>#<anchor>`
+- scheme: an internet protocol such as https
+- domain name: includes 0 or more subdomains and a root domain (which includes the top level domain)
+- port: 80 for http, 443 for https, etc.
+- path: how to get to the resource
+- parameters: list of key-value pairs
+- anchor: a way to tell the browser to go to a specific part of the resource (such as an HTML element by ID)
+
+### HTTP
+An http request has a method, url, headers (key-value pairs), and a body. An http response has many attributes, but the most common are the code content-type, and content. Cookies can be used to keep track of state between requests.
+
 
 ## Midterm Study-Guide
 
