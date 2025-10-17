@@ -68,30 +68,106 @@ The practice with JavaScript arrays and first class functions was fun. I learned
 
 I learned a little about how react useState works with [this codepen](https://codepen.io/hkamm123/pen/ogbwLrm). Also used [this one](https://codepen.io/hkamm123/pen/dPGRpXB) to learn about the JS DOM.
 
-I learned what it means to "push state up" in React, which gives me the ability to pass variables and objects between components.
-
 ## React Part 2: Reactivity
 
-This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.
+I learned what it means to "push state up" in React, which gives me the ability to pass variables and objects between components.
 
-Handling the toggling of the checkboxes was particularly interesting.
+### JavaScript Promises
+A simple example of using promises:
+``` js
+const coinToss = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    if (Math.random() > 0.1) {
+      resolve(Math.random() > 0.5 ? 'heads' : 'tails');
+    } else {
+      reject('fell off table');
+    }
+  }, 10000);
+});
 
-```jsx
-<div className="input-group sound-button-container">
-  {calmSoundTypes.map((sound, index) => (
-    <div key={index} className="form-check form-switch">
-      <input
-        className="form-check-input"
-        type="checkbox"
-        value={sound}
-        id={sound}
-        onChange={() => togglePlay(sound)}
-        checked={selectedSounds.includes(sound)}
-      ></input>
-      <label className="form-check-label" htmlFor={sound}>
-        {sound}
-      </label>
-    </div>
-  ))}
-</div>
+coinToss
+  .then((result) => console.log(`Coin toss result: ${result}`))
+  .catch((err) => console.log(`Error: ${err}`))
+  .finally(() => console.log('Toss completed'));
+
+// OUTPUT:
+//    Coin toss result: tails
+//    Toss completed
 ```
+[this codepen](https://codepen.io/hkamm123/pen/qEbVQXZ?editors=1010) is also a good example.
+
+## Midterm Study-Guide
+
+### In the following code, what does the link element do?
+	a link element links another file, such as a stylesheet or script
+### In the following code,  what does a div tag do?
+	a div tag can act as a separator or container for content separation or styling purposes
+### In the following code, what is the difference between the #title and .grid selector?
+	#title selects an element with id title, while .grid selects all elements with class grid
+### In the following code, what is the difference between padding and margin?
+	padding is on the inside of the border; margin on the outside
+### Given this HTML and this CSS how will the images be displayed using flex?
+	flex displays in a row by default, can change with things like flex-direction, align-items, and justify-content
+### What does the following padding CSS do?
+	modifies space inside the element (between the content and the border)
+### What does the following code using arrow syntax function declaration do?
+	just a first-class function
+### What does the following code using map with an array output?
+	map will apply a function to every item of an array, returning a new array without mutating the original
+### What does the following code output using getElementByID and addEventListener?
+	const btn = document.getElementById('btn');
+	btn.addEventListener('click', () => console.log('Clicked!'));
+### What does the following line of Javascript do using a # selector?
+	matches # selector in css
+### Which of the following are true? (mark all that are true about the DOM)
+	The DOM represents the HTML document as a tree of objects. You can use JavaScript to access and modify
+	DOM elements. Each HTML element is a node in the DOM.
+### By default, the HTML span element has a default CSS display property value of: 
+	inline
+### How would you use CSS to change all the div elements to have a background color of red?
+	div {background-color: red}
+### How would you display an image with a hyperlink in HTML?
+	wrap the <img> tag inside an <a> tag
+### In the CSS box model, what is the ordering of the box layers starting at the inside and working out?
+	content, padding, border, margin
+### Given the following HTML, what CSS would you use to set the text "trouble" to green and leave the "double" text unaffected?
+	div for all div elements; . for class; # for id;	
+### How would you use JavaScript to select an element with the id of “byu” and change the text color of that element to green?
+	document.getElementById('byu').style.color = 'green';
+### What is the opening HTML tag for a paragraph, ordered list, unordered list, second level heading, first level heading, third level heading?
+	<p> <ol> <ul> <h2> <h1> <h3>
+### How do you declare the document type to be html?
+	<!DOCTYPE html>
+### What is valid javascript syntax for if, else, for, while, switch statements?
+	same as Java but with things like let instead of type declarations
+### What is the correct syntax for creating a javascript object?
+	let myObj = {prop: val};
+### Is it possible to add new properties to javascript objects?
+	yes; object.newprop = val;
+### If you want to include JavaScript on an HTML page, which tag do you use?
+	<script src="./scripts.js">
+### Given the following HTML, what JavaScript could you use to set the text "animal" to "crow" and leave the "fish" text unaffected?
+	document.getElementById('animal').textContent = 'crow';
+### Which of the following correctly describes JSON?
+	JSON (JavaScript Object Notation) is a way to represent JavaScript objects as strings
+### What does the console command chmod, pwd, cd, ls, vim, nano, mkdir, mv, rm, man, ssh, ps, wget, sudo  do?
+	ps: process status (list of processes); wget: get content from web servers
+### Which of the following console command creates a remote shell session?
+	ssh, using -i to input a key if needed, and using a username and domain name to specify where you're connecting to
+### Which of the following is true when the -la parameter is specified for the ls console command?
+	-l: long list format; -a: display all, including hidden
+### Which of the following is true for the domain name banana.fruit.bozo.click, which is the top level domain, which is a subdomain, which is a root domain?
+	top-level: .click; root: bozo.click; sub: fruit.bozo.click, and banana.fruit.bozo.click;
+### Is a web certificate is necessary to use HTTPS.
+	yes; a web certificate is necessary
+### Can a DNS A record can point to an IP address or another A record.
+	no; an A record only points to an IP address
+### Port 443, 80, 22 is reserved for which protocol?
+	443: https; 80: http; 22: ssh;
+### What will the following code using Promises output when executed?
+	1 Promise.resolve('Done').then(console.log) -> 'Done'
+	2 Promise.reject('Error').catch(console.error) -> 'Error'
+	3 new Promise(res => setTimeout(() => res('Hi'),1000)).then(console.log) -> 'Hi' after 1s
+	4 Async function returns value -> printed when awaited or .then
+	5 Promise chain: Promise.resolve(2).then(x=>x*2).then(x=>x+1).then(console.log) -> 5
+	6 Reject handled -> shows error via catch.
