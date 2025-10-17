@@ -72,7 +72,7 @@ I learned a little about how react useState works with [this codepen](https://co
 
 I learned what it means to "push state up" in React, which gives me the ability to pass variables and objects between components.
 
-### JavaScript Promises
+### JavaScript Promises and Async/Await
 A simple example of using promises:
 ``` js
 const coinToss = new Promise((resolve, reject) => {
@@ -95,6 +95,25 @@ coinToss
 //    Toss completed
 ```
 [this codepen](https://codepen.io/hkamm123/pen/qEbVQXZ?editors=1010) is also a good example.
+
+In order to avoid the lengthy syntax of promise chains, we can `await` the promise using a try/catch/finally block. `await` cannot be used unless in the top level or in an `async` function. The difference between using chains and using await is shown in the following code from the instruction:
+``` js
+const httpPromise = fetch('https://simon.cs260.click/api/user/me');
+const jsonPromise = httpPromise.then((r) => r.json());
+jsonPromise.then((j) => console.log(j));
+console.log('done');
+
+// OUTPUT: done
+// OUTPUT: {email: 'bud@mail.com', authenticated: true}
+
+const httpResponse = await fetch('https://simon.cs260.click/api/user/me');
+const jsonResponse = await httpResponse.json();
+console.log(jsonResponse);
+console.log('done');
+
+// OUTPUT: {email: 'bud@mail.com', authenticated: true}
+// OUTPUT: done
+```
 
 ## Midterm Study-Guide
 
