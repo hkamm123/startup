@@ -7,8 +7,12 @@ export class BudgetObj {
     this.categories = [];
   }
 
-  addCategory(category) {
-    this.categories.push(category);
+  addCategory(categoryName, spendingLimit) {
+    if (this.categories.find(cat => cat.name === categoryName)) {
+      this.categories.find(cat => cat.name === categoryName).spendingLimit = spendingLimit;
+    } else {
+      this.categories.push(new CategoryObj(categoryName, spendingLimit));
+    }
   }
 
   removeCategory(categoryName) {

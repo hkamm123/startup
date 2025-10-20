@@ -3,9 +3,12 @@ import './budget.css';
 import { AuthState } from '../login/authState';
 import { Button } from 'react-bootstrap';
 import { BudgetObj } from './budgetObj.js';
+import { renderMatches } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 export function Budget(props) {
+  const navigate = useNavigate();
   if (props.authState !== AuthState.Authenticated) {
     return (
       <main>
@@ -61,10 +64,15 @@ export function Budget(props) {
           <h2>{category.name}</h2>
           <progress value={category.currentSpending} max={category.spendingLimit}></progress>
           <p>Spent: {category.getSpendingStatus()}</p>
-          <a href="/category">edit</a>
+          <button onClick={() => handleEditCategory(category.name, category.spendingLimit)}>edit</button>
           <hr></hr>
         </section>
       </div>
     ));
   }
+
+  function handleEditCategory(categoryName, spendingLimit) {
+    navigate('/category', { state: { categoryName: categoryName, spendingLimit: spendingLimit} });
+  }
+
 }

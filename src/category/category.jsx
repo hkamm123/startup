@@ -1,10 +1,14 @@
 import React from 'react';
 import {AuthState} from '../login/authState';
 import { CategoryObj } from '../budget/categoryObj.js';
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export function Category(props) {
-  const [catName, setCatName] = React.useState('');
-  const [catLimit, setCatLimit] = React.useState(0);
+  const location = useLocation();
+  const [catName, setCatName] = React.useState(location.state?.categoryName ?? '');
+  const [catLimit, setCatLimit] = React.useState(location.state?.spendingLimit ?? 0);
+  const navigate = useNavigate();
 
   if (props.authState !== AuthState.Authenticated) {
     return (
@@ -16,18 +20,18 @@ export function Category(props) {
       <main>
           <h1>Add/Edit a Category</h1>
           <h2>Welcome, {props.userName}!</h2>
-          <form method="get" action="/budget">
+          <form onSubmit={(e) => {e.preventDefault(); addCategory(catName, catLimit);}}>
               <div>
               <span>📝</span>
-              <input type="text" onChange={(e) => setCatName(e.target.value)} placeholder="category name" />
+              <input type="text" onChange={(e) => setCatName(e.target.value)} placeholder="Category name" value={catName}/>
               </div>
 
               <div>
               <span>💵</span>
-              <input type="number" onChange={(e) => setCatLimit(e.target.value)} placeholder="spending limit" />
+              <input type="number" onChange={(e) => setCatLimit(e.target.value)} placeholder="spending limit" value={catLimit}/>
               </div>
 
-              <button onClick={() => addCategory(catName, catLimit)}>Add Category</button>
+              <button type="submit">Add/Edit Category</button>
           </form>
           <a target="_blank" href="https://tasty.co/recipe/one-pot-garlic-parmesan-chicken-pasta">recipe of the day</a>
       </main>
@@ -35,7 +39,7 @@ export function Category(props) {
   }
 
   function addCategory() {
-    props.budget.addCategory(new CategoryObj(catName, catLimit))
-    localStorage.setItem('budget', JSON.stringify(props.budget));
+    props.onEditCategory(catName, catLimit);
+    navigate('/budget');
   }
 }

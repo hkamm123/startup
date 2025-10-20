@@ -79,7 +79,15 @@ export default function App() {
           exact
         />
         <Route path='/budget' element={<Budget userName={userName} authState={authState} budget={budget}/>} />
-        <Route path='/category' element={<Category userName={userName} authState={authState} budget={budget} />} />
+        <Route path='/category' element={<Category 
+          userName={userName} 
+          authState={authState} 
+          budget={budget}
+          onEditCategory={(catName, catLimit) => {
+            budget.addCategory(catName, catLimit);
+            setBudget(budget);
+            localStorage.setItem('budget', JSON.stringify(budget));}}
+          />} />
         <Route path='/expense' element={<Expense userName={userName} authState={authState} budget={budget} addExpense={
           (categoryName, expense) => {
             budget.addExpense(categoryName, expense);
