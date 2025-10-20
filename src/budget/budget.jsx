@@ -6,7 +6,6 @@ import { BudgetObj } from './budgetObj.js';
 
 
 export function Budget(props) {
-
   if (props.authState !== AuthState.Authenticated) {
     return (
       <main>
@@ -28,25 +27,7 @@ export function Budget(props) {
             </section>
           </div>
             
-          <div className="budget-category">
-            <section>
-              <h2>Groceries</h2>
-              <progress value="37" max="100"></progress>
-              <p>Spent: $37/$100</p>
-              <a href="/category">edit</a>
-              <hr></hr>
-            </section>
-          </div>
-
-          <div className="budget-category">
-            <section>
-              <h2>Gas</h2>
-              <progress value="20" max="75"></progress>
-              <p>Spent: $20/$75</p>
-              <a href="/category">edit</a>
-              <hr></hr>
-            </section>
-          </div>
+          {listCategories()}
         </div>
 
         <a href="/category">Add a Category</a>
@@ -56,15 +37,34 @@ export function Budget(props) {
   }
 
   function listExpenses() {
-    var elements = [];
-    for (let category of props.budget.categories) {
-      for (let expense of category.expenses) {
-        elements.push(<li>
-          <Button onClick={category.removeExpense(expense)}>🗑️</Button>
-          {expense.creator} added {expense.item} for ${expense.amount} in {category.name}
-          </li>)
-      }
-    }
-    return elements;
+    if (!props.budget || !Array.isArray(props.budget.categories)) return null;
+
+    return props.budget.categories.flatMap((category, catIndex) =>
+      (Array.isArray(category.expenses) ? category.expenses.map((expense, expIndex) => {
+        const key = expense.id ? `${category.name}-${expense.id}` : `${category.name}-${expIndex}-${catIndex}`;
+        return (
+          <li key={key}>
+            <Button onClick={() => category.removeExpense(expense)}>🗑️</Button>{' '}
+            {expense.creator} added {expense.item} for ${expense.amount} in {category.name}
+          </li>
+        );
+      }) : [])
+    );
+  }
+
+  function listCategories() {
+    if (!props.budget || !Array.isArray(props.budget.categories)) return null;
+
+    return props.budget.categories.map((category, index) => (
+      <div className="budget-category">
+        <section>
+          <h2>{category.name}</h2>
+          <progress value={category.currentSpending} max={category.spendingLimit}></progress>
+          <p>Spent: {category.getSpendingStatus}</p>
+          <a href="/category">edit</a>
+          <hr></hr>
+        </section>
+      </div>
+    ));
   }
 }
