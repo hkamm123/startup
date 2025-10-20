@@ -10,6 +10,7 @@ import { Expense } from './expense/expense';
 import { AuthState } from './login/authState';
 import { BudgetObj } from './budget/budgetObj.js';
 import { CategoryObj } from './budget/categoryObj.js';
+import { ExpenseObj } from './budget/expenseObj.js';
 
 export default function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
