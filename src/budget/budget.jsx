@@ -60,7 +60,7 @@ export function Budget(props) {
         <section>
           <h2>{category.name}</h2>
           <progress value={category.currentSpending} max={category.spendingLimit}></progress>
-          <p>Spent: {category.getSpendingStatus}</p>
+          <p>Spent: {category.getSpendingStatus()}</p>
           <a href="/category">edit</a>
           <hr></hr>
         </section>
