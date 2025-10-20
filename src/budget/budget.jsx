@@ -56,7 +56,7 @@ export function Budget(props) {
     if (!props.budget || !Array.isArray(props.budget.categories)) return null;
 
     return props.budget.categories.map((category, index) => (
-      <div className="budget-category">
+      <div className="budget-category" key={`category-${index}`}>
         <section>
           <h2>{category.name}</h2>
           <progress value={category.currentSpending} max={category.spendingLimit}></progress>
