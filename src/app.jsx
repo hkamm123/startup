@@ -9,12 +9,41 @@ import { Category } from './category/category';
 import { Expense } from './expense/expense';
 import { AuthState } from './login/authState';
 import { BudgetObj } from './budget/budgetObj.js';
+import { CategoryObj } from './budget/categoryObj.js';
 
 export default function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
   const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
-  const [budget, setBudget] = React.useState(localStorage.getItem('budget') ? JSON.parse(localStorage.getItem('budget')) : new BudgetObj());
+  const [budget, setBudget] = React.useState(() => {
+    const raw = localStorage.getItem('budget');
+    if (!raw) return new BudgetObj(userName);
+    try {
+      const parsed = JSON.parse(raw);
+      return reviveBudget(parsed, userName);
+    } catch (e) {
+      console.error('Failed to parse budget from storage, creating new one', e);
+      return new BudgetObj(userName);
+    }
+  });
+
+  function reviveBudget(source, defaultUser) {
+    const src = source || {};
+    const b = new BudgetObj(src.username ?? defaultUser);
+    const cats = Array.isArray(src.categories) ? src.categories : [];
+    for (const c of cats) {
+      const cat = new CategoryObj(c.name, c.spendingLimit ?? 0);
+      // copy any simple fields the CategoryObj uses
+      if (typeof c.currentSpending !== 'undefined') cat.currentSpending = c.currentSpending;
+      const exps = Array.isArray(c.expenses) ? c.expenses : [];
+      for (const e of exps) {
+        const expense = new ExpenseObj(Number(e.amount) || 0, e.item, e.category ?? c.name, e.creator);
+        cat.addExpense(expense);
+      }
+      b.addCategory(cat);
+    }
+    return b;
+  }
 
   return (
   <BrowserRouter>
@@ -50,7 +79,13 @@ export default function App() {
         />
         <Route path='/budget' element={<Budget userName={userName} authState={authState} budget={budget}/>} />
         <Route path='/category' element={<Category userName={userName} authState={authState} budget={budget} />} />
-        <Route path='/expense' element={<Expense userName={userName} authState={authState} />} />
+        <Route path='/expense' element={<Expense userName={userName} authState={authState} budget={budget} addExpense={
+          (categoryName, expense) => {
+            budget.addExpense(categoryName, expense);
+            setBudget(budget);
+            localStorage.setItem('budget', JSON.stringify(budget));
+          }
+        }/>} />
         <Route path='*' element={<NotFound />} />
       </Routes>
 
