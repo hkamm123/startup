@@ -47,7 +47,7 @@ export function Budget(props) {
         const key = expense.id ? `${category.name}-${expense.id}` : `${category.name}-${expIndex}-${catIndex}`;
         return (
           <li key={key}>
-            <Button onClick={() => category.removeExpense(expense)}>🗑️</Button>{' '}
+            <Button className="button" onClick={() => category.removeExpense(expense)}>🗑️</Button>{' '}
             {expense.creator} added {expense.item} for ${expense.amount} in {category.name}
           </li>
         );
@@ -64,7 +64,7 @@ export function Budget(props) {
           <h2>{category.name}</h2>
           <progress value={category.currentSpending} max={category.spendingLimit}></progress>
           <p>Spent: {category.getSpendingStatus()}</p>
-          <button onClick={() => handleEditCategory(category.name, category.spendingLimit)}>edit</button>
+          <Button className="button" onClick={() => handleEditCategory(category.name, category.spendingLimit)}>edit</Button>
           <hr></hr>
         </section>
       </div>

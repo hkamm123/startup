@@ -15,10 +15,10 @@ export function Authenticated(props) {
   return (
     <div>
       <h2>{userName}</h2>
-      <Button onClick={() => navigate('/budget')}>
+      <Button className="button" onClick={() => navigate('/budget')}>
         View Budget
       </Button>
-      <Button onClick={() => logout()}>
+      <Button className="button" onClick={() => logout()}>
         Logout
       </Button>
     </div>

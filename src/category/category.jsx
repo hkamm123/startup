@@ -3,6 +3,7 @@ import {AuthState} from '../login/authState';
 import { CategoryObj } from '../budget/categoryObj.js';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 export function Category(props) {
   const location = useLocation();
@@ -31,7 +32,7 @@ export function Category(props) {
               <input type="number" onChange={(e) => setCatLimit(e.target.value)} placeholder="spending limit" value={catLimit}/>
               </div>
 
-              <button type="submit">Add/Edit Category</button>
+              <Button className="button" type="submit">Add/Edit</Button>
           </form>
           <a target="_blank" href="https://tasty.co/recipe/one-pot-garlic-parmesan-chicken-pasta">recipe of the day</a>
       </main>

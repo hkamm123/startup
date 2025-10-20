@@ -112,3 +112,27 @@ button {
 button:hover {
     background-color: antiquewhite;
 }
+
+.button {
+    background-color: coral;
+    color: darkslategrey;
+    text-decoration: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border: none;
+    width: 100px;
+    margin: 5px;
+}
+
+.button:hover {
+    background-color: antiquewhite;
+    color: darkslategrey;
+}
+
+.button:disabled {
+    background-color: coral;
+    color: darkslategrey;
+    text-decoration: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border: none;
+    width: 100px;
+}

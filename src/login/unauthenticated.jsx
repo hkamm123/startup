@@ -22,10 +22,10 @@ export function Unauthenticated(props) {
       <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="your@email.com" />
       <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="password" />
 
-      <Button className="auth-button" onClick={() => loginUser()} disabled={!userName || !password}>
+      <Button className="button" onClick={() => loginUser()} disabled={!userName || !password}>
         Login
       </Button>
-      <Button onClick={() => createUser()} disabled={!userName || !password}>
+      <Button className="button" onClick={() => createUser()} disabled={!userName || !password}>
         Create
       </Button>
     </form>
