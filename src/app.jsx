@@ -78,7 +78,17 @@ export default function App() {
           }
           exact
         />
-        <Route path='/budget' element={<Budget userName={userName} authState={authState} budget={budget}/>} />
+        <Route path='/budget' element={<Budget 
+          userName={userName} 
+          authState={authState} 
+          budget={budget}
+          handleDeleteExpense={(catIndex, expIndex) => {
+            budget.removeExpense(catIndex, expIndex);
+            const newBudget = reviveBudget(budget, userName);
+            setBudget(newBudget);
+            localStorage.setItem('budget', JSON.stringify(newBudget));
+          }}
+          />} />
         <Route path='/category' element={<Category 
           userName={userName} 
           authState={authState} 

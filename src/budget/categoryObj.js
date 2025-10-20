@@ -15,15 +15,19 @@ export class CategoryObj {
     this.currentSpending += expense.amount;
   }
 
-  removeExpense(expense) {
-    const expenseIndex = this.expenses.indexOf(expense);
-    if (expenseIndex !== -1) {
-      this.expenses.splice(expenseIndex, 1);
-      this.currentSpending -= expense.amount;
+  removeExpense(expIndex) {
+    const foundExpense = this.expenses.find((e, index) => index === expIndex);
+    if (foundExpense) {
+      const expenseAmount = this.expenses[expIndex].amount;
+      this.expenses.splice(expIndex, 1);
+      this.currentSpending -= expenseAmount;
     }
   }
 
   getSpendingStatus() {
+    if (!this.spendingLimit) {
+      this.spendingLimit = 0;
+    }
     return `${this.currentSpending}/${this.spendingLimit}`;
   }
 }

@@ -19,13 +19,10 @@ export class BudgetObj {
     this.categories = this.categories.filter(cat => cat.name !== categoryName);
   }
 
-  removeExpense(expense) {
-    for (const category of this.categories) {
-      const expenseIndex = category.expenses.indexOf(expense);
-      if (expenseIndex !== -1) {
-        category.removeExpense(expenseIndex);
-        return;
-      }
+  removeExpense(catIndex, expIndex) {
+    const category = this.categories.find((cat, index) => index === catIndex);
+    if (category) {
+      category.removeExpense(expIndex);
     }
   }
 
@@ -34,8 +31,7 @@ export class BudgetObj {
     if (category) {
       category.addExpense(expense);
     } else {
-      this.addCategory(new CategoryObj(categoryName, 0));
-      this.addExpense(categoryName, expense);
+      this.addCategory(new CategoryObj(categoryName, 0).addExpense);
     }
   }
 }

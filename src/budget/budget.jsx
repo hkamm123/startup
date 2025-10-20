@@ -3,7 +3,6 @@ import './budget.css';
 import { AuthState } from '../login/authState';
 import { Button } from 'react-bootstrap';
 import { BudgetObj } from './budgetObj.js';
-import { renderMatches } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -39,7 +38,15 @@ export function Budget(props) {
     );
   }
 
+  function renderVal(v) {
+    if (v === null || typeof v === 'undefined') return '';
+    if (typeof v === 'string' || typeof v === 'number' || React.isValidElement(v)) return v;
+    // if it's an object, try common properties then fallback to JSON
+    return v.name ?? v.item ?? v.id ?? JSON.stringify(v);
+  };
+
   function listExpenses() {
+
     if (!props.budget || !Array.isArray(props.budget.categories)) return null;
 
     return props.budget.categories.flatMap((category, catIndex) =>
@@ -47,11 +54,11 @@ export function Budget(props) {
         const key = expense.id ? `${category.name}-${expense.id}` : `${category.name}-${expIndex}-${catIndex}`;
         return (
           <li key={key}>
-            <Button className="button" onClick={() => category.removeExpense(expense)}>🗑️</Button>{' '}
-            {expense.creator} added {expense.item} for ${expense.amount} in {category.name}
+            <Button className="button" onClick={() => props.handleDeleteExpense(catIndex, expIndex)}>🗑️</Button>{' '}
+            {renderVal(expense.creator)} added {renderVal(expense.item)} for ${renderVal(expense.amount)} in {renderVal(category.name)}
           </li>
         );
-      }) : [])
+      }) : Array.of())
     );
   }
 
@@ -61,7 +68,7 @@ export function Budget(props) {
     return props.budget.categories.map((category, index) => (
       <div className="budget-category" key={`category-${index}`}>
         <section>
-          <h2>{category.name}</h2>
+          <h2>{renderVal(category.name)}</h2>
           <progress value={category.currentSpending} max={category.spendingLimit}></progress>
           <p>Spent: {category.getSpendingStatus()}</p>
           <Button className="button" onClick={() => handleEditCategory(category.name, category.spendingLimit)}>edit</Button>
@@ -74,5 +81,4 @@ export function Budget(props) {
   function handleEditCategory(categoryName, spendingLimit) {
     navigate('/category', { state: { categoryName: categoryName, spendingLimit: spendingLimit} });
   }
-
 }
