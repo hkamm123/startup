@@ -37,7 +37,6 @@ export function Expense(props) {
 
               <button type="submit">Add Expense</button>
           </form>
-          <a target="_blank" href="https://tasty.co/recipe/one-pot-garlic-parmesan-chicken-pasta">recipe of the day</a>
       </main>
     );
 

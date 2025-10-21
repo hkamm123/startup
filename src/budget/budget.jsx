@@ -33,7 +33,6 @@ export function Budget(props) {
         </div>
 
         <a href="/category">Add a Category</a>
-        <a target="_blank" href="https://tasty.co/recipe/one-pot-garlic-parmesan-chicken-pasta">recipe of the day</a>
       </main>
     );
   }
