@@ -4,9 +4,9 @@ import { ExpenseObj } from '../budget/expenseObj';
 import { useNavigate } from 'react-router-dom';
 
 export function Expense(props) {
-  const [amount, updateAmount] = React.useState(props.amount || 0);
-  const [item, updateItem] = React.useState(props.item || 'item');
-  const [categoryName, updateCategoryName] = React.useState(props.categoryName || 'category name');
+  const [amount, updateAmount] = React.useState(0);
+  const [item, updateItem] = React.useState('');
+  const [categoryName, updateCategoryName] = React.useState('');
   const navigate = useNavigate();
   
   if (props.authState !== AuthState.Authenticated) {
@@ -22,17 +22,17 @@ export function Expense(props) {
           <form onSubmit={(e) => {e.preventDefault(); handleAddExpense(); navigate('/budget');}}>
               <div>
               <span>💵</span>
-              <input type="number" placeholder={amount} onChange={(e) => updateAmount(e.target.value)}/>
+              <input type="number" placeholder="Amount" onChange={(e) => updateAmount(e.target.value)}/>
               </div>
 
               <div>
               <span>🛒</span>
-              <input type="text" placeholder={item} onChange={(e) => updateItem(e.target.value)}/>
+              <input type="text" placeholder="Item" onChange={(e) => updateItem(e.target.value)}/>
               </div>
 
               <div>
               <span>📝</span>
-              <input type="text" placeholder={categoryName} onChange={(e) => updateCategoryName(e.target.value)}/>
+              <input type="text" placeholder="Category" onChange={(e) => updateCategoryName(e.target.value)}/>
               </div>
 
               <button type="submit">Add Expense</button>

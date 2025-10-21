@@ -8,10 +8,14 @@ export class BudgetObj {
   }
 
   addCategory(categoryName, spendingLimit) {
-    if (this.categories.find(cat => cat.name === categoryName)) {
-      this.categories.find(cat => cat.name === categoryName).spendingLimit = spendingLimit;
+    const name = typeof categoryName === 'string' ? categoryName : categoryName?.name;
+    const limit = typeof spendingLimit === 'number' ? spendingLimit : categoryName?.spendingLimit ?? 0;
+
+    const existing = this.categories.find(cat => cat.name === name);
+    if (existing) {
+      existing.spendingLimit = limit;
     } else {
-      this.categories.push(new CategoryObj(categoryName, spendingLimit));
+      this.categories.push(new CategoryObj(name, limit));
     }
   }
 
@@ -31,7 +35,9 @@ export class BudgetObj {
     if (category) {
       category.addExpense(expense);
     } else {
-      this.addCategory(new CategoryObj(categoryName, 0).addExpense);
+      const newCategory = new CategoryObj(categoryName, 0);
+      newCategory.addExpense(expense);
+      this.categories.push(newCategory);
     }
   }
 }

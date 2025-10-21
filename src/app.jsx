@@ -95,14 +95,16 @@ export default function App() {
           budget={budget}
           onEditCategory={(catName, catLimit) => {
             budget.addCategory(catName, catLimit);
-            setBudget(budget);
-            localStorage.setItem('budget', JSON.stringify(budget));}}
+            const newBudget = reviveBudget(budget, userName);
+            setBudget(newBudget);
+            localStorage.setItem('budget', JSON.stringify(newBudget));}}
           />} />
         <Route path='/expense' element={<Expense userName={userName} authState={authState} budget={budget} addExpense={
           (categoryName, expense) => {
             budget.addExpense(categoryName, expense);
-            setBudget(budget);
-            localStorage.setItem('budget', JSON.stringify(budget));
+            const newBudget = reviveBudget(budget, userName);
+            setBudget(newBudget);
+            localStorage.setItem('budget', JSON.stringify(newBudget));
           }
         }/>} />
         <Route path='*' element={<NotFound />} />

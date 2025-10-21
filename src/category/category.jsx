@@ -7,9 +7,18 @@ import { Button } from 'react-bootstrap';
 
 export function Category(props) {
   const location = useLocation();
-  const [catName, setCatName] = React.useState(location.state?.categoryName ?? '');
-  const [catLimit, setCatLimit] = React.useState(location.state?.spendingLimit ?? 0);
+  const nameFromState = location.state?.categoryName;
   const navigate = useNavigate();
+  const category = (props.budget && Array.isArray(props.budget.categories))
+    ? props.budget.categories.find(c => c.name === nameFromState)
+    : undefined;
+
+  const categoryName = category?.name ?? nameFromState ?? '';
+  const spendingLimit = category?.spendingLimit ?? 0;
+  console.log("editing category:", categoryName, spendingLimit); // TODO: remove
+  
+  const [catName, setCatName] = React.useState(categoryName);
+  const [catLimit, setCatLimit] = React.useState(spendingLimit);
 
   if (props.authState !== AuthState.Authenticated) {
     return (
@@ -40,7 +49,7 @@ export function Category(props) {
   }
 
   function addCategory() {
-    props.onEditCategory(catName, catLimit);
+    props.onEditCategory(catName, Number(catLimit));
     navigate('/budget');
   }
 }

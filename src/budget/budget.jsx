@@ -47,7 +47,7 @@ export function Budget(props) {
 
   function listExpenses() {
 
-    if (!props.budget || !Array.isArray(props.budget.categories)) return null;
+    if (!props.budget.categories) return null;
 
     return props.budget.categories.flatMap((category, catIndex) =>
       (Array.isArray(category.expenses) ? category.expenses.map((expense, expIndex) => {
@@ -58,7 +58,7 @@ export function Budget(props) {
             {renderVal(expense.creator)} added {renderVal(expense.item)} for ${renderVal(expense.amount)} in {renderVal(category.name)}
           </li>
         );
-      }) : Array.of())
+      }) : null)
     );
   }
 
@@ -66,19 +66,20 @@ export function Budget(props) {
     if (!props.budget || !Array.isArray(props.budget.categories)) return null;
 
     return props.budget.categories.map((category, index) => (
+      console.log("rendering category:", category),
       <div className="budget-category" key={`category-${index}`}>
         <section>
           <h2>{renderVal(category.name)}</h2>
           <progress value={category.currentSpending} max={category.spendingLimit}></progress>
           <p>Spent: {category.getSpendingStatus()}</p>
-          <Button className="button" onClick={() => handleEditCategory(category.name, category.spendingLimit)}>edit</Button>
+          <Button className="button" onClick={() => handleEditCategory(category.name)}>edit</Button>
           <hr></hr>
         </section>
       </div>
     ));
   }
 
-  function handleEditCategory(categoryName, spendingLimit) {
-    navigate('/category', { state: { categoryName: categoryName, spendingLimit: spendingLimit} });
+  function handleEditCategory(categoryName) {
+    navigate('/category', { state: { categoryName: categoryName} });
   }
 }
