@@ -83,8 +83,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - including login, create account, recipe of the day information, budget category creation, and expense creation/deletion.
+- [x] **Hooks** - I made use of them for all implemented/mocked out functionality
 
 ## 🚀 Service deliverable
 
