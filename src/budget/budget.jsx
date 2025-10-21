@@ -70,7 +70,7 @@ export function Budget(props) {
       <div className="budget-category" key={`category-${index}`}>
         <section>
           <h2>{renderVal(category.name)}</h2>
-          <progress value={category.currentSpending} max={category.spendingLimit}></progress>
+          <progress value={category.getCurrentSpending()} max={category.spendingLimit}></progress>
           <p>Spent: {category.getSpendingStatus()}</p>
           <Button className="button" onClick={() => handleEditCategory(category.name)}>edit</Button>
           <hr></hr>

@@ -106,13 +106,10 @@ export default function App() {
           addExpense={
             (categoryName, expense) => {
               const plain = JSON.parse(JSON.stringify(budget));
-              console.log('plain before revive:', plain);
               const newBudget = reviveBudget(plain, userName);
               newBudget.addExpense(categoryName, expense);
-              console.log('newBudget after addExpense:', newBudget);
               setBudget(newBudget);
               localStorage.setItem('budget', JSON.stringify(newBudget));
-              console.log('localStorage now:', JSON.parse(localStorage.getItem('budget')));
             }
         }/>} />
         <Route path='*' element={<NotFound />} />
