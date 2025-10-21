@@ -99,13 +99,17 @@ export default function App() {
             setBudget(newBudget);
             localStorage.setItem('budget', JSON.stringify(newBudget));}}
           />} />
-        <Route path='/expense' element={<Expense userName={userName} authState={authState} budget={budget} addExpense={
-          (categoryName, expense) => {
-            budget.addExpense(categoryName, expense);
-            const newBudget = reviveBudget(budget, userName);
-            setBudget(newBudget);
-            localStorage.setItem('budget', JSON.stringify(newBudget));
-          }
+        <Route path='/expense' element={<Expense 
+          userName={userName} 
+          authState={authState} 
+          budget={budget} 
+          addExpense={
+            (categoryName, expense) => {
+              const newBudget = reviveBudget(budget, userName);
+              newBudget.addExpense(categoryName, expense);
+              setBudget(newBudget);
+              localStorage.setItem('budget', JSON.stringify(newBudget));
+            }
         }/>} />
         <Route path='*' element={<NotFound />} />
       </Routes>

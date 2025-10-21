@@ -11,6 +11,7 @@ export class CategoryObj {
   }
 
   addExpense(expense) {
+    console.log("CategoryObj.addExpense:", this.name, expense); // TODO: remove
     this.expenses.push(expense);
     this.currentSpending += expense.amount;
   }
