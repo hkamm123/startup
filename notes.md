@@ -72,6 +72,10 @@ I learned a little about how react useState works with [this codepen](https://co
 
 I learned what it means to "push state up" in React, which gives me the ability to pass variables and objects between components.
 
+I also learned a lot about mutating objects and passing them around. I decided to use custom objects for my budgets, categories, and expenses, and it was a little tricky figuring out how to properly update them and persist them while passing them around between components. I ended up using a hook in the top-level (App) component to store the budget object, and passed it along with handlers (first-class functions) to the other components. This way, whenever anything in the budget got changed, I could create a new budget object to cause React to see the change, then persist it and pass it back down to the component that needed it.
+
+I learned that one thing I don't like about JavaScript is the utter lack of any kind of type checking or type annotation. At first, it seems like it will give you a lot of freedom being able to create and modify objects however you want on the fly, but in my experience it ended up just causing problems that could've been avoided in a language like Java.
+
 ## JavaScript Promises and Async/Await
 A simple example of using promises:
 ``` js
