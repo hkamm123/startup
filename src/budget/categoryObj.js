@@ -12,7 +12,6 @@ export class CategoryObj {
 
   addExpense(expense) {
     this.expenses.push(expense);
-    this.currentSpending += expense.amount;
   }
 
   removeExpense(expIndex) {
@@ -20,7 +19,6 @@ export class CategoryObj {
     if (foundExpense) {
       const expenseAmount = this.expenses[expIndex].amount;
       this.expenses.splice(expIndex, 1);
-      this.currentSpending -= expenseAmount;
     }
   }
 
@@ -28,6 +26,10 @@ export class CategoryObj {
     if (!this.spendingLimit) {
       this.spendingLimit = 0;
     }
-    return `${this.currentSpending}/${this.spendingLimit}`;
+    return `${this.getCurrentSpending()}/${this.spendingLimit}`;
+  }
+
+  getCurrentSpending() {
+    return this.expenses.reduce((total, expense) => total + expense.amount, 0);
   }
 }
