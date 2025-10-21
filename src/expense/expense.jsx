@@ -44,7 +44,6 @@ export function Expense(props) {
     function handleAddExpense() {
       const amt = Number(amount);
       const expense = new ExpenseObj(amt, item, categoryName, props.userName);
-      console.log("adding expense to category:", expense, categoryName); // TODO: remove
       props.addExpense(categoryName, expense);
     }
   }

@@ -15,7 +15,6 @@ export function Category(props) {
 
   const categoryName = category?.name ?? nameFromState ?? '';
   const spendingLimit = category?.spendingLimit ?? 0;
-  console.log("editing category:", categoryName, spendingLimit); // TODO: remove
   
   const [catName, setCatName] = React.useState(categoryName);
   const [catLimit, setCatLimit] = React.useState(spendingLimit);

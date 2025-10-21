@@ -31,7 +31,6 @@ export class BudgetObj {
   }
 
   addExpense(categoryName, expense) {
-    console.log("BudgetObj.addExpense:", categoryName, expense); // TODO: remove
     const category = this.categories.find(cat => cat.name === categoryName);
     if (category) {
       category.addExpense(expense);

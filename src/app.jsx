@@ -41,7 +41,7 @@ export default function App() {
         const expense = new ExpenseObj(Number(e.amount) || 0, e.item, e.category ?? c.name, e.creator);
         cat.addExpense(expense);
       }
-      b.addCategory(cat);
+      b.categories.push(cat);
     }
     return b;
   }
@@ -105,10 +105,14 @@ export default function App() {
           budget={budget} 
           addExpense={
             (categoryName, expense) => {
-              const newBudget = reviveBudget(budget, userName);
+              const plain = JSON.parse(JSON.stringify(budget));
+              console.log('plain before revive:', plain);
+              const newBudget = reviveBudget(plain, userName);
               newBudget.addExpense(categoryName, expense);
+              console.log('newBudget after addExpense:', newBudget);
               setBudget(newBudget);
               localStorage.setItem('budget', JSON.stringify(newBudget));
+              console.log('localStorage now:', JSON.parse(localStorage.getItem('budget')));
             }
         }/>} />
         <Route path='*' element={<NotFound />} />
