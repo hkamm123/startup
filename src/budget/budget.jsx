@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function Budget(props) {
   const navigate = useNavigate();
+
   if (props.authState !== AuthState.Authenticated) {
     return (
       <main>
@@ -65,7 +66,6 @@ export function Budget(props) {
     if (!props.budget || !Array.isArray(props.budget.categories)) return null;
 
     return props.budget.categories.map((category, index) => (
-      console.log("rendering category:", category),
       <div className="budget-category" key={`category-${index}`}>
         <section>
           <h2>{renderVal(category.name)}</h2>

@@ -28,6 +28,25 @@ export default function App() {
     }
   });
 
+  React.useEffect(() => { // temporary placeholder to simulate websocket communication
+    const id = setInterval(() => {
+      let catIndex = budget.categories.findIndex(c => c.name === 'Misc');
+      if (catIndex !== -1 && budget.categories[catIndex].expenses.length === 0) {
+        addExpense('Misc', new ExpenseObj(5, 'stuff', 'Misc', 'otherUser'));
+      }
+      setTimeout(() => {
+        let catIndex = budget.categories.findIndex(c => c.name === 'Misc');
+        if (catIndex !== -1) {
+          let expIndex = budget.categories[catIndex].expenses.findIndex(e => e.item === 'stuff');
+          if (expIndex !== -1) {
+            deleteExpense(catIndex, expIndex);
+          }
+        }
+      }, 3000);
+    }, 3000);
+    return () => clearInterval(id);
+  }, [budget]);
+
   function reviveBudget(source, defaultUser) {
     const src = source || {};
     const b = new BudgetObj(src.username ?? defaultUser);
@@ -82,12 +101,8 @@ export default function App() {
           userName={userName} 
           authState={authState} 
           budget={budget}
-          handleDeleteExpense={(catIndex, expIndex) => {
-            budget.removeExpense(catIndex, expIndex);
-            const newBudget = reviveBudget(budget, userName);
-            setBudget(newBudget);
-            localStorage.setItem('budget', JSON.stringify(newBudget));
-          }}
+          handleDeleteExpense={deleteExpense}
+          addExpense={addExpense}
           />} />
         <Route path='/category' element={<Category 
           userName={userName} 
@@ -103,15 +118,8 @@ export default function App() {
           userName={userName} 
           authState={authState} 
           budget={budget} 
-          addExpense={
-            (categoryName, expense) => {
-              const plain = JSON.parse(JSON.stringify(budget));
-              const newBudget = reviveBudget(plain, userName);
-              newBudget.addExpense(categoryName, expense);
-              setBudget(newBudget);
-              localStorage.setItem('budget', JSON.stringify(newBudget));
-            }
-        }/>} />
+          addExpense={addExpense}
+        />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
 
@@ -120,6 +128,21 @@ export default function App() {
           <a href="https://github.com/hkamm123/startup">GitHub</a>
       </footer>
   </BrowserRouter>);
+
+  function addExpense(categoryName, expense) {
+    const plain = JSON.parse(JSON.stringify(budget));
+    const newBudget = reviveBudget(plain, userName);
+    newBudget.addExpense(categoryName, expense);
+    setBudget(newBudget);
+    localStorage.setItem('budget', JSON.stringify(newBudget));
+  }
+
+  function deleteExpense(catIndex, expIndex) {
+    budget.removeExpense(catIndex, expIndex);
+    const newBudget = reviveBudget(budget, userName);
+    setBudget(newBudget);
+    localStorage.setItem('budget', JSON.stringify(newBudget));
+  }
 }
 
 function NotFound() {
