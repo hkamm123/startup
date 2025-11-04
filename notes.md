@@ -151,6 +151,8 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
 ### HTTP
 An http request has a method, url, headers (key-value pairs), and a body. An http response has many attributes, but the most common are the code content-type, and content. Cookies can be used to keep track of state between requests.
 
+## Startup Service
+I began by making a simple service following the beginning of the Simon service instruction. However, I found that I had to use `'*path'` instead of just `'*'` when matching the path for my endpoint due to some change between Express 4 and 5 now requiring some type of named parameter for wildcards.
 
 ## Midterm Study-Guide
 
