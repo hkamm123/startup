@@ -9,13 +9,15 @@ const uuid = require('uuid');
 const authCookieName = 'token';
 
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 let users = [];
 let budgets = [];
 
 let apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+
+app.use(express.static('public'));
 
 // CreateAuth a new user
 // example: curl -v -X POST localhost:4000/api/auth/create -H 'Content-Type: application/json' -d '{"email":"s@byu.edu", "password":"byu"}' -c cookies.txt -b cookies.txt
