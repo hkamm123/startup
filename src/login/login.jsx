@@ -8,17 +8,16 @@ export function Login({ userName, authState, onAuthChange }) {
   const [recipeImgUrl, setRecipeImgUrl] = React.useState('');
   const [recipeLink, setRecipeLink] = React.useState('');
 
-  React.useEffect(async () => {
+  React.useEffect(() => {
     async function getRandomRecipe() {
       const res = await fetch('https://www.themealdb.com/api/json/v1/1/random.php', {
         method: 'GET'
       });
       const data = await res.json();
-      return { "image":data.meals[0].strMealThumb, "url": data.meals[0].strSource || data.meals[0].strYoutube }
+      setRecipeImgUrl(data.meals[0].strMealThumb);
+      setRecipeLink(data.meals[0].strSource || data.meals[0].strYoutube)
     }
-    const recipeData = await getRandomRecipe();
-    setRecipeImgUrl((recipeData).image);
-    setRecipeLink((recipeData).url);
+    getRandomRecipe();
   }, []);
 
 
