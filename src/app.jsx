@@ -157,19 +157,42 @@ export default function App() {
       </footer>
   </BrowserRouter>);
 
-  function addExpense(categoryName, expense) {
+  async function addExpense(categoryName, expense) {
     const plain = JSON.parse(JSON.stringify(budget));
-    const newBudget = reviveBudget(plain, userName);
-    newBudget.addExpense(categoryName, expense);
+    const next = reviveBudget(plain, userName);
+    next.addExpense(categoryName, expense);
+    const res = await fetch('/api/budget', {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(next)
+    })
+    if (res.status !== 200) {
+      console.error("failed to save updated budget");
+      return;
+    }
+    const saved = await res.json();
+    const newBudget = reviveBudget(saved, userName);
     setBudget(newBudget);
-    localStorage.setItem('budget', JSON.stringify(newBudget));
   }
 
-  function deleteExpense(catIndex, expIndex) {
-    budget.removeExpense(catIndex, expIndex);
-    const newBudget = reviveBudget(budget, userName);
+  async function deleteExpense(catIndex, expIndex) {
+    const plain = JSON.parse(JSON.stringify(budget));
+    const next = reviveBudget(plain, userName);
+    next.removeExpense(catIndex, expIndex);
+    const res = await fetch('/api/budget', {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(next)
+    })
+    if (res.status !== 200) {
+      console.error("failed to save updated budget");
+      return;
+    }
+    const saved = await res.json();
+    const newBudget = reviveBudget(saved, userName);
     setBudget(newBudget);
-    localStorage.setItem('budget', JSON.stringify(newBudget));
   }
 }
 
