@@ -1,5 +1,4 @@
-import { Category } from "../category/category";
-import { CategoryObj } from "./categoryObj";
+import { CategoryObj } from "./categoryObj.js";
 
 export class BudgetObj {
   constructor(username) {

@@ -1,3 +1,4 @@
+const BudgetObj = require('../src/budget/budgetObj.js');
 const express = require('express');
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(cookieParser())
 
 let users = [];
+let budgets = [];
 
 let apiRouter = express.Router();
 app.use(`/api`, apiRouter);
@@ -65,6 +67,19 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
+// GET the budget that belongs to the current user (if there isn't one, then create one)
+// example: curl -v -X GET localhost:4000/api/budget -c cookies.txt -b cookies.txt
+apiRouter.get('/budget', verifyAuth, async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  const budget = await findBudget('owner', user.email);
+  if (budget) {
+    res.send(budget.budgetObj);
+  } else {
+    const newBudget = await createBudget(user.email);
+    res.send(newBudget.budgetObj);
+  }
+});
+
 // Default error handler
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
@@ -92,6 +107,22 @@ async function findUser(field, value) {
   if (!value) return null;
 
   return users.find((u) => u[field] === value);
+}
+
+async function findBudget(field, value) {
+  if (!value) return null;
+
+  return budgets.find((u) => u[field] === value);
+}
+
+async function createBudget(owner) {
+  const budget = {
+    owner: owner,
+    budgetObj: new BudgetObj.BudgetObj()
+  }
+
+  budgets.push(budget)
+  return budget;
 }
 
 // setAuthCookie in the HTTP response
