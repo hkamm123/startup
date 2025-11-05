@@ -1,4 +1,3 @@
-const BudgetObj = require('../src/budget/budgetObj.js');
 const express = require('express');
 const app = express();
 
@@ -132,7 +131,7 @@ async function findBudget(field, value) {
 async function createBudget(owner) {
   const budget = {
     owner: owner,
-    budgetObj: new BudgetObj.BudgetObj()
+    budgetObj: { categories: [] }
   }
 
   budgets.push(budget)
