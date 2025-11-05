@@ -90,12 +90,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - I created the service, following the example of Simon.
+- [x] **Static middleware for frontend** - I made sure to tell the service where to find the static files.
+- [x] **Calls to third party endpoints** - I used a random recipe API to provide a recipe thumbnail and url.
+- [x] **Backend service endpoints** - I created custom endpoints to support getting and updating the budget on the backend from the frontend.
+- [x] **Frontend calls service endpoints** - I changed the frontend to use the service endpoints.
+- [x] **Supports registration, login, logout, and restricted endpoint** - I created endpoints for all of these, following the example of Simon.
 
 
 ## 🚀 DB deliverable
