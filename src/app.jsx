@@ -18,12 +18,13 @@ export default function App() {
   const [authState, setAuthState] = React.useState(currentAuthState);
 
   const [budget, setBudget] = React.useState(() => {
-    fetchBudget();
+    new BudgetObj(userName);
   })
 
   async function fetchBudget() {
     const response = await fetch('/api/budget', {
-      method: 'get'
+      method: 'get',
+      credentials: 'include'
     })
     if (response.status !== 200) {
       setBudget(new BudgetObj(userName)); // temporary budget if the user is not logged in
@@ -34,7 +35,16 @@ export default function App() {
     setBudget(revived);
     return revived;
   }
-  
+
+  React.useEffect(() => {
+    if (authState === AuthState.Authenticated && userName) {
+      fetchBudget();
+    } else {
+      setBudget(new BudgetObj(userName));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authState, userName]);
+    
   React.useEffect(() => { // temporary placeholder to simulate websocket communication
     const id = setInterval(() => {
       let catIndex = budget.categories.findIndex(c => c.name === 'Misc');
@@ -115,11 +125,22 @@ export default function App() {
           userName={userName} 
           authState={authState} 
           budget={budget}
-          onEditCategory={(catName, catLimit) => {
-            budget.addCategory(catName, catLimit);
-            const newBudget = reviveBudget(budget, userName);
-            setBudget(newBudget);
-            localStorage.setItem('budget', JSON.stringify(newBudget));}}
+          onEditCategory={async (catName, catLimit) => {
+            const next = reviveBudget(JSON.parse(JSON.stringify(budget)), userName);
+            next.addCategory(catName, catLimit);
+            const res = await fetch('/api/budget', {
+              method: 'PUT',
+              credentials: 'include',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify(next)
+            });
+            if (res.status !== 200) {
+              console.error("failed to save updated budget");
+              return;
+            }
+            const saved = await res.json();
+            setBudget(reviveBudget(saved, userName));
+          }}
           />} />
         <Route path='/expense' element={<Expense 
           userName={userName} 
