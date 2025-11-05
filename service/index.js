@@ -80,6 +80,20 @@ apiRouter.get('/budget', verifyAuth, async (req, res) => {
   }
 });
 
+// PUT update the current user's budget
+// example: curl -v -X PUT localhost:4000/api/budget -H 'Content-Type: application/json' -d <budget json> -c cookies.txt -b cookies.txt
+apiRouter.put('/budget', verifyAuth, async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  const json = req.body;
+  if (!json) return res.status(401).send({ msg: 'No budget provided in request' });
+  const existing = await findBudget('owner', user.email);
+  if (existing) {
+    existing.budgetObj = json;
+    res.status(200).send(existing.budgetObj);
+  }
+  return;
+});
+
 // Default error handler
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
