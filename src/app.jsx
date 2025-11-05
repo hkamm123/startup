@@ -16,18 +16,25 @@ export default function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
   const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
+
   const [budget, setBudget] = React.useState(() => {
-    const raw = localStorage.getItem('budget');
-    if (!raw) return new BudgetObj(userName);
-    try {
-      const parsed = JSON.parse(raw);
-      return reviveBudget(parsed, userName);
-    } catch (e) {
-      console.error('Failed to parse budget from storage, creating new one', e);
+    fetchBudget();
+  })
+
+  async function fetchBudget() {
+    const response = await fetch('/api/budget', {
+      method: 'get'
+    })
+    if (response.status !== 200) {
+      setBudget(new BudgetObj(userName)); // temporary budget if the user is not logged in
       return new BudgetObj(userName);
     }
-  });
-
+    const body = await response.json();
+    const revived = reviveBudget(body, userName);
+    setBudget(revived);
+    return revived;
+  }
+  
   React.useEffect(() => { // temporary placeholder to simulate websocket communication
     const id = setInterval(() => {
       let catIndex = budget.categories.findIndex(c => c.name === 'Misc');
@@ -46,7 +53,7 @@ export default function App() {
     }, 3000);
     return () => clearInterval(id);
   }, [budget]);
-
+  
   function reviveBudget(source, defaultUser) {
     const src = source || {};
     const b = new BudgetObj(src.username ?? defaultUser);
@@ -64,9 +71,9 @@ export default function App() {
     }
     return b;
   }
-
+  
   return (
-  <BrowserRouter>
+    <BrowserRouter>
       <header>
           <h1>NoNonCents</h1>
           <nav>
