@@ -8,10 +8,19 @@ export function Login({ userName, authState, onAuthChange }) {
   const [recipeImgUrl, setRecipeImgUrl] = React.useState('');
   const [recipeLink, setRecipeLink] = React.useState('');
 
-  React.useEffect(() => {
-    setRecipeImgUrl('512546.webp');
-    setRecipeLink('https://tasty.co/recipe/one-pot-garlic-parmesan-chicken-pasta');
+  React.useEffect(async () => {
+    async function getRandomRecipe() {
+      const res = await fetch('https://www.themealdb.com/api/json/v1/1/random.php', {
+        method: 'GET'
+      });
+      const data = await res.json();
+      return { "image":data.meals[0].strMealThumb, "url": data.meals[0].strSource || data.meals[0].strYoutube }
+    }
+    const recipeData = await getRandomRecipe();
+    setRecipeImgUrl((recipeData).image);
+    setRecipeLink((recipeData).url);
   }, []);
+
 
   return (
     <main>
