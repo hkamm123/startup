@@ -30,8 +30,6 @@ const authCookieName = 'token';
 app.use(express.json());
 app.use(cookieParser());
 
-let budgets = [];
-
 let apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
@@ -108,29 +106,46 @@ function getUserByToken(token) {
 // GET the budget that belongs to the current user (if there isn't one, then create one)
 // example: curl -v -X GET localhost:4000/api/budget -c cookies.txt -b cookies.txt
 apiRouter.get('/budget', verifyAuth, async (req, res) => {
-  const user = await findUser('token', req.cookies[authCookieName]);
-  const budget = await findBudget('owner', user.email);
+  const user = await getUserByToken(req.cookies[authCookieName]);
+  const budget = await getBudget(user.email);
   if (budget) {
     res.send(budget.budgetObj);
   } else {
     const newBudget = await createBudget(user.email);
+    await addBudget(newBudget);
     res.send(newBudget.budgetObj);
   }
 });
 
+function getBudget(ownerEmail) {
+  return budgetCollection.findOne({ owner: ownerEmail });
+}
+
+async function addBudget(budget) {
+  await budgetCollection.insertOne(budget);
+}
+
 // PUT update the current user's budget
 // example: curl -v -X PUT localhost:4000/api/budget -H 'Content-Type: application/json' -d <budget json> -c cookies.txt -b cookies.txt
 apiRouter.put('/budget', verifyAuth, async (req, res) => {
-  const user = await findUser('token', req.cookies[authCookieName]);
+  const user = await getUserByToken(req.cookies[authCookieName]);
   const json = req.body;
   if (!json) return res.status(401).send({ msg: 'No budget provided in request' });
-  const existing = await findBudget('owner', user.email);
+  const existing = await getBudget(user.email);
   if (existing) {
-    existing.budgetObj = json;
-    res.status(200).send(existing.budgetObj);
+    const newBudget = {
+      owner: existing.owner,
+      budgetObj: json
+    }
+    await updateBudget(newBudget)
+    res.status(200).send(newBudget.budgetObj);
   }
   return;
 });
+
+async function updateBudget(budget) {
+  await budgetCollection.updateOne({ owner: budget.owner }, { $set: { budgetObj: budget.budgetObj } });
+}
 
 // Default error handler
 app.use(function (err, req, res, next) {
@@ -154,19 +169,12 @@ async function createUser(email, password) {
   return user;
 }
 
-async function findBudget(field, value) {
-  if (!value) return null;
-
-  return budgets.find((u) => u[field] === value);
-}
-
 async function createBudget(owner) {
   const budget = {
     owner: owner,
     budgetObj: { categories: [] }
   }
 
-  budgets.push(budget)
   return budget;
 }
 
