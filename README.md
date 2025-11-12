@@ -102,8 +102,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [x] **Stores data in MongoDB** - This was simple enough. I followed the example of Simon to persist user and budget data using MongoDB.
+- [x] **Stores credentials in MongoDB** - See the above line.
 
 ## 🚀 WebSocket deliverable
 
