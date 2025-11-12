@@ -30,7 +30,6 @@ const authCookieName = 'token';
 app.use(express.json());
 app.use(cookieParser());
 
-let users = [];
 let budgets = [];
 
 let apiRouter = express.Router();
@@ -41,23 +40,33 @@ app.use(express.static('public'));
 // CreateAuth a new user
 // example: curl -v -X POST localhost:4000/api/auth/create -H 'Content-Type: application/json' -d '{"email":"s@byu.edu", "password":"byu"}' -c cookies.txt -b cookies.txt
 apiRouter.post('/auth/create', async (req, res) => {
-  if (await findUser('email', req.body.email)) {
+  if (await getUser(req.body.email)) {
     res.status(409).send({ msg: 'Existing user' });
   } else {
     const user = await createUser(req.body.email, req.body.password);
 
     setAuthCookie(res, user.token);
+    await addUser(user);
     res.send({ email: user.email });
   }
 });
 
+function getUser(email) {
+  return userCollection.findOne({ email: email });
+}
+
+async function addUser(user) {
+  await userCollection.insertOne(user);
+}
+
 // GetAuth login an existing user
 // example: curl -v -X POST localhost:4000/api/auth/login -H 'Content-Type: application/json' -d '{"email":"s@byu.edu", "password":"byu"}' -c cookies.txt -b cookies.txt
 apiRouter.post('/auth/login', async (req, res) => {
-  const user = await findUser('email', req.body.email);
+  const user = await getUser(req.body.email);
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
+      await updateUser(user)
       setAuthCookie(res, user.token);
       res.send({ email: user.email });
       return;
@@ -66,12 +75,17 @@ apiRouter.post('/auth/login', async (req, res) => {
   res.status(401).send({ msg: 'Unauthorized' });
 });
 
+async function updateUser(user) {
+  await userCollection.updateOne({ email: user.email }, { $set: user });
+}
+
 // DeleteAuth logout a user
 // example: curl -v -X DELETE localhost:4000/api/auth/logout -c cookies.txt -b cookies.txt
 apiRouter.delete('/auth/logout', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
     delete user.token;
+    await updateUser(user);
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
@@ -79,13 +93,17 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 
 // Middleware to verify that the user is authorized to call an endpoint
 const verifyAuth = async (req, res, next) => {
-  const user = await findUser('token', req.cookies[authCookieName]);
+  const user = await getUserByToken(req.cookies[authCookieName]);
   if (user) {
     next();
   } else {
     res.status(401).send({ msg: 'Unauthorized' });
   }
 };
+
+function getUserByToken(token) {
+  return userCollection.findOne({ token: token });
+}
 
 // GET the budget that belongs to the current user (if there isn't one, then create one)
 // example: curl -v -X GET localhost:4000/api/budget -c cookies.txt -b cookies.txt
@@ -132,15 +150,8 @@ async function createUser(email, password) {
     password: passwordHash,
     token: uuid.v4(),
   };
-  users.push(user);
 
   return user;
-}
-
-async function findUser(field, value) {
-  if (!value) return null;
-
-  return users.find((u) => u[field] === value);
 }
 
 async function findBudget(field, value) {
