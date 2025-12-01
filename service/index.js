@@ -1,5 +1,6 @@
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
+const { peerProxy } = require('./peerProxy.js');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
@@ -187,6 +188,8 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+peerProxy(httpService);
