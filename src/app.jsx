@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
@@ -12,11 +12,32 @@ import { BudgetObj } from './budget/budgetObj.js';
 import { CategoryObj } from './budget/categoryObj.js';
 import { ExpenseObj } from './budget/expenseObj.js';
 
-export default function App(props) {
+export default function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
   const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
   const [budget, setBudget] = React.useState(new BudgetObj(userName));
+  const [messageList, setMessageList] = React.useState([]);
+  const wsRef = useRef(null);
+
+  React.useEffect(() => {
+    let port = window.location.port;
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    var socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
+    wsRef.current = socket;
+    socket.onopen = (_) => {
+      console.log('websocket connected');
+    };
+    socket.onclose = (_) => {
+      console.log('websocket disconnected');
+    };
+    socket.onMessage = async (msg) => {
+      try {
+        const message = await msg.data.text();
+        setMessageList((prev) => [...prev, message]);  
+      } catch {}
+    };
+  }, []);
 
   async function fetchBudget() {
     const response = await fetch('/api/budget', {
@@ -171,7 +192,7 @@ export default function App(props) {
     const saved = await res.json();
     const newBudget = reviveBudget(saved, userName);
     setBudget(newBudget);
-    props.webSocket.broadcastMessage('expense added'); // TODO: change
+    wsRef.current.send('expense added'); // TODO: change
   }
 
   async function deleteExpense(catIndex, expIndex) {
