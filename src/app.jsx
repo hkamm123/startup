@@ -171,7 +171,7 @@ export default function App(props) {
     const saved = await res.json();
     const newBudget = reviveBudget(saved, userName);
     setBudget(newBudget);
-    props.webSocket.broadcastMessage(`${categoryName}${expense}`);
+    props.webSocket.broadcastMessage('expense added'); // TODO: change
   }
 
   async function deleteExpense(catIndex, expIndex) {
