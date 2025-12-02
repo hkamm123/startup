@@ -17,6 +17,7 @@ function peerProxy(httpServer) {
     connections.push(connection);
 
     ws.on('message', function message(data) {
+      console.log('ws message received by server'); //TODO: remove
       connections.forEach((c) => {
         if (c.id !== connection.id) {
           c.ws.send(data);

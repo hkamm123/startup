@@ -12,7 +12,7 @@ import { BudgetObj } from './budget/budgetObj.js';
 import { CategoryObj } from './budget/categoryObj.js';
 import { ExpenseObj } from './budget/expenseObj.js';
 
-export default function App() {
+export default function App(props) {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
   const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
@@ -174,6 +174,7 @@ export default function App() {
     const saved = await res.json();
     const newBudget = reviveBudget(saved, userName);
     setBudget(newBudget);
+    props.webSocket.broadcastMessage(`${categoryName}${expense}`);
   }
 
   async function deleteExpense(catIndex, expIndex) {
