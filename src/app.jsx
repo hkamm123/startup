@@ -16,10 +16,7 @@ export default function App(props) {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
   const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
-
-  const [budget, setBudget] = React.useState(() => {
-    new BudgetObj(userName);
-  })
+  const [budget, setBudget] = React.useState(new BudgetObj(userName));
 
   async function fetchBudget() {
     const response = await fetch('/api/budget', {
@@ -90,10 +87,10 @@ export default function App(props) {
               <menu>
               <li><NavLink className="nav-link" to="/">Home</NavLink></li>
               { authState === AuthState.Authenticated &&
-              <li><NavLink className="nav-link" to="budget">My Budget</NavLink></li>
+              <li><NavLink className="nav-link" to="/budget">My Budget</NavLink></li>
               }
               { authState === AuthState.Authenticated &&
-              <li><NavLink className="nav-link" to="expense">Add Expense</NavLink></li>
+              <li><NavLink className="nav-link" to="/expense">Add Expense</NavLink></li>
               }
               </menu>
           </nav>
