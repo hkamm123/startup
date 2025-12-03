@@ -142,6 +142,7 @@ export default function App() {
           budget={budget}
           handleDeleteExpense={deleteExpense}
           addExpense={addExpense}
+          messageList={messageList}
           />} />
         <Route path='/category' element={<Category 
           userName={userName} 
@@ -169,7 +170,6 @@ export default function App() {
           authState={authState} 
           budget={budget} 
           addExpense={addExpense}
-          messageList={messageList}
         />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
@@ -198,7 +198,7 @@ export default function App() {
     const newBudget = reviveBudget(saved, userName);
     setBudget(newBudget);
     if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-      wsRef.current.send('expense added: ' + JSON.stringify(expense) + " " + categoryName); // TODO: change
+      wsRef.current.send(expense.creator + " spent $" + expense.amount.toString() + " on " + expense.item); // TODO: change
     }
   }
 
