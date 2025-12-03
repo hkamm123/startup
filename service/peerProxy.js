@@ -18,10 +18,7 @@ function peerProxy(httpServer) {
 
     ws.on('message', function message(data) {
       const msg = data.toString();
-      console.log('ws message received by server: '); //TODO: remove
-      console.log(msg) // TODO: remove
       connections.forEach((c) => {
-        console.log('sending message from server: ') // TODO: remove
         c.ws.send(msg);
       });
     });

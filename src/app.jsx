@@ -198,7 +198,7 @@ export default function App() {
     const newBudget = reviveBudget(saved, userName);
     setBudget(newBudget);
     if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-      wsRef.current.send(expense.creator + " spent $" + expense.amount.toString() + " on " + expense.item); // TODO: change
+      wsRef.current.send(expense.creator + " spent $" + expense.amount.toString() + " on " + expense.item);
     }
   }
 
