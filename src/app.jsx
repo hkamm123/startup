@@ -21,22 +21,26 @@ export default function App() {
   const wsRef = useRef(null);
 
   React.useEffect(() => {
+    if (wsRef.current) return;
     let port = window.location.port;
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
     var socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
     wsRef.current = socket;
     socket.onopen = (_) => {
-      console.log('websocket connected');
+      console.log('websocket opened');
     };
     socket.onclose = (_) => {
-      console.log('websocket disconnected');
+      console.log('websocket closed');
     };
-    socket.onMessage = async (msg) => {
+    socket.onmessage = async (msg) => {
       try {
-        const message = await msg.data.text();
+        const message = await msg.data;
+        console.log('ws message received: ' + message)
         setMessageList((prev) => [...prev, message]);  
       } catch {}
     };
+
+    return () => socket.close();
   }, []);
 
   async function fetchBudget() {
@@ -165,6 +169,7 @@ export default function App() {
           authState={authState} 
           budget={budget} 
           addExpense={addExpense}
+          messageList={messageList}
         />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
@@ -192,7 +197,9 @@ export default function App() {
     const saved = await res.json();
     const newBudget = reviveBudget(saved, userName);
     setBudget(newBudget);
-    wsRef.current.send('expense added'); // TODO: change
+    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+      wsRef.current.send('expense added: ' + JSON.stringify(expense) + " " + categoryName); // TODO: change
+    }
   }
 
   async function deleteExpense(catIndex, expIndex) {

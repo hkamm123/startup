@@ -21,6 +21,15 @@ export function Budget(props) {
         <h2>Welcome, {props.userName}!</h2>
 
         <div className="budget-content">
+          <div className="recent-messages">
+            <section>
+              <h3>Recent Notifications</h3>
+              <ul>
+                {listMessages()}
+              </ul>
+            </section>
+          </div>
+          
           <div className="recent-transactions">
             <section>
               <h3>Recent Transactions</h3>
@@ -44,6 +53,15 @@ export function Budget(props) {
     // if it's an object, try common properties then fallback to JSON
     return v.name ?? v.item ?? v.id ?? JSON.stringify(v);
   };
+
+  function listMessages() {
+    if (!props.messageList) return null;
+    return props.messageList.map((message) => (
+      <li key={message}>
+        {message}
+      </li>
+    ))
+  }
 
   function listExpenses() {
 

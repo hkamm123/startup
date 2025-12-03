@@ -17,17 +17,16 @@ function peerProxy(httpServer) {
     connections.push(connection);
 
     ws.on('message', function message(data) {
-      console.log('ws message received by server'); //TODO: remove
-      console.log(data) // TODO: remove
+      const msg = data.toString();
+      console.log('ws message received by server: '); //TODO: remove
+      console.log(msg) // TODO: remove
       connections.forEach((c) => {
-        if (c.id !== connection.id) {
-          console.log('sending message from server') // TODO: remove
-          c.ws.send(data);
-        }
+        console.log('sending message from server: ') // TODO: remove
+        c.ws.send(msg);
       });
     });
 
-    wss.on('close', () => {
+    ws.on('close', () => {
       connections.findIndex((o, i) => {
         if (o.id === connection.id) {
           connections.splice(i, 1);
